@@ -7,7 +7,7 @@ export class FaceSnap {
         public snaps: number,
         public imgUrl: string
     ) {}
-    
+
     addSnap(): void {
         this.snaps++;
     }
@@ -18,5 +18,10 @@ export class FaceSnap {
 
     setLocation(location: string): void {
         this.location = location;
+    }
+
+    withLocation(location: string): FaceSnap {
+        this.setLocation(location);
+        return this;
     }
 }
