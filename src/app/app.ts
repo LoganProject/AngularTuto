@@ -15,9 +15,11 @@ import {AsyncPipe} from '@angular/common';
   styleUrl: './app.scss'
 })
 export class App implements OnInit {
-  interval$!: Observable<number>;
+  interval$!: Observable<string>;
 
   ngOnInit() {
-    this.interval$ = interval(1000);
+    this.interval$ = interval(1000).pipe(
+      map((value) => value % 2 === 0 ? `${value} --> Pair`: `${value} --> Impair`)
+    );
   }
 }
