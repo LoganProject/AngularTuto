@@ -1,12 +1,18 @@
+import {SnapType} from './snap-type.type';
+
 export class FaceSnap {
     location?: string;
+    id: string;
+
     constructor(
         public title: string,
         public description: string,
         public createdAt: Date,
         public snaps: number,
         public imgUrl: string
-    ) {}
+    ) {
+      this.id = crypto.randomUUID().substring(0, 8);
+    }
 
     addSnap(): void {
         this.snaps++;
@@ -14,6 +20,14 @@ export class FaceSnap {
 
     removeSnap(): void {
         this.snaps--;
+    }
+
+    handleSnap(snapType: SnapType) {
+      if(snapType === 'snap') {
+        this.addSnap();
+      } else {
+        this.removeSnap();
+      }
     }
 
     setLocation(location: string): void {

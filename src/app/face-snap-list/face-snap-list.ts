@@ -14,8 +14,7 @@ import {FaceSnapsService} from '../services/face-snaps.service';
 export class FaceSnapList implements OnInit {
   faceSnaps!: FaceSnap[];
 
-  constructor(private faceSnapsService: FaceSnapsService) {
-  }
+  constructor(private faceSnapsService: FaceSnapsService) {}
 
   ngOnInit(): void {
     this.faceSnaps = this.faceSnapsService.getFaceSnaps();
