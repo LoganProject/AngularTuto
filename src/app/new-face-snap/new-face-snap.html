@@ -1,0 +1,35 @@
+<div class="form-card">
+  <h2> Nouveau FaceSnap</h2>
+  <form [formGroup]="snapForm">
+    <div class="form-group">
+      <label for="title">Titre</label>
+      <input type="text" id="title" formControlName="title">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea type="text" id="description" formControlName="description" rows="4"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="imgUrl">URL de l'image</label>
+      <input type="text" id="imgUrl" formControlName="imgUrl">
+    </div>
+    <div class="form-group">
+      <label for="location">Localisation</label>
+      <input type="text" id="location" formControlName="location">
+    </div>
+    <div class="action-buttons">
+      <button type="submit" (click)="onSubmitForm()">Enregistrer</button>
+    </div>
+  </form>
+</div>
+@if (faceSnapPreview$ | async; as faceSnap) {
+  <div class="face-snap-card">
+    <h2>{{ faceSnap.title | uppercase }}</h2>
+    <p>Mis en ligne {{ faceSnap.createdAt | date: 'à HH:mm, le d MMMM yyyy' }}</p>
+    <img [src]="faceSnap.imgUrl" [alt]="faceSnap.title">
+    <p>{{ faceSnap.description }}</p>
+    @if (faceSnap.location) {
+      <p>Photo prise à {{ faceSnap.location }}</p>
+    }
+  </div>
+}

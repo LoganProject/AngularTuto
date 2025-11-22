@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterLink, RouterLinkActive} from '@angular/router';
+import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,4 +12,9 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
 })
 export class Header {
 
+  constructor(private router: Router) {
+  }
+  onAddNewFaceSnap() {
+    this.router.navigateByUrl('create')
+  }
 }
