@@ -29,6 +29,7 @@ export class SingleFaceSnap implements OnInit {
   ngOnInit(): void {
     this.setupInterface();
     this.getSnapFace();
+    console.log(this.faceSnap)
   }
 
   onSnapClick(): void {
