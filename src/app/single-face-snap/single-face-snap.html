@@ -11,7 +11,7 @@
       <p>{{ faceSnap.description }}</p>
       <p>Created at: {{ faceSnap.createdAt | date: "d MMMM yyyy, à HH:mm" }}</p>
       <p>
-          <button (click)="onSnapClick()">{{ snapButtonText }}</button>
+          <button (click)="onSnapClick(faceSnap.id)">{{ snapButtonText }}</button>
           <span [ngStyle]="{ color: 'rgb(0, ' + faceSnap.snaps + ', 0)' }">&#10084;&#65039; : {{ faceSnap.snaps }}</span>
       </p>
   </div>
