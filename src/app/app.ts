@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     RouterOutlet,
     FormsModule,
     ReactiveFormsModule,
+
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'

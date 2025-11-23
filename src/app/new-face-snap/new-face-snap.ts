@@ -35,7 +35,7 @@ export class NewFaceSnap implements OnInit {
         {
         title: [null, Validators.required],
         description: [null, Validators.required],
-        imgUrl: [null, [Validators.required, Validators.pattern(this.urlRegex)]],
+        imageUrl: [null, [Validators.required, Validators.pattern(this.urlRegex)]],
         location : [null],
         },
         {

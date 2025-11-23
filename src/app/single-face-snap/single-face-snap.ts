@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FaceSnap } from '../models/face-snap';
-import {DatePipe, NgClass, NgStyle, UpperCasePipe} from '@angular/common';
+import {AsyncPipe, DatePipe, NgClass, NgStyle, UpperCasePipe} from '@angular/common';
 import {FaceSnapsService} from '../services/face-snaps.service';
 import {ActivatedRoute, RouterLink} from '@angular/router';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-single-face-snap',
@@ -11,13 +12,14 @@ import {ActivatedRoute, RouterLink} from '@angular/router';
     NgClass,
     UpperCasePipe,
     DatePipe,
-    RouterLink
+    RouterLink,
+    AsyncPipe
   ],
   templateUrl: './single-face-snap.html',
   styleUrl: './single-face-snap.scss',
 })
 export class SingleFaceSnap implements OnInit {
-  faceSnap!: FaceSnap;
+  faceSnap$!: Observable<FaceSnap>;
   hasSnapped!: boolean;
   snapButtonText!: string;
 
@@ -29,18 +31,17 @@ export class SingleFaceSnap implements OnInit {
   ngOnInit(): void {
     this.setupInterface();
     this.getSnapFace();
-    console.log(this.faceSnap)
   }
 
   onSnapClick(): void {
-    if(this.hasSnapped) {
-      this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'unsnap');
-      this.snapButtonText = 'Oh Snap!';
-    } else {
-      this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'snap');
-      this.snapButtonText = 'Oops, unSnap!';
-    }
-    this.hasSnapped = !this.hasSnapped;
+    // if(this.hasSnapped) {
+    //   this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'unsnap');
+    //   this.snapButtonText = 'Oh Snap!';
+    // } else {
+    //   this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'snap');
+    //   this.snapButtonText = 'Oops, unSnap!';
+    // }
+    // this.hasSnapped = !this.hasSnapped;
   }
 
   private setupInterface() {
@@ -50,6 +51,6 @@ export class SingleFaceSnap implements OnInit {
 
   private getSnapFace() {
     const faceSnapId = this.route.snapshot.params['id'];
-    this.faceSnap = this.faceSnapsService.getFaceSnapById(faceSnapId);
+    this.faceSnap$ = this.faceSnapsService.getFaceSnapById(faceSnapId);
   }
 }
