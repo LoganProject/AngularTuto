@@ -7,8 +7,8 @@ import {
 import {provideRouter} from '@angular/router';
 
 import {routes} from './app.routes';
-import {provideHttpClient, withInterceptors} from '@angular/common/http';
-import {authInterceptor} from './interceptors/auth.interceptor';
+import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {AuthInterceptor} from './interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,8 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     { provide: LOCALE_ID, useValue: 'fr-FR'},
-    provideHttpClient(
-      withInterceptors([authInterceptor])
-    ),
+    provideHttpClient(withInterceptorsFromDi()),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ]
 };
