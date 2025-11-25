@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {map, Observable, tap} from 'rxjs';
-import {FaceSnap} from '../models/face-snap';
+import {FaceSnap} from '../../../core/models/face-snap';
 import {AsyncPipe, DatePipe, UpperCasePipe} from '@angular/common';
-import {FaceSnapsService} from '../services/face-snaps.service';
+import {FaceSnapsService} from '../../../core/services/face-snaps.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -47,7 +47,7 @@ export class NewFaceSnap implements OnInit {
       this.faceSnapPreview$ = this.snapForm.valueChanges.pipe(
         map((formValue) => ({
           ...formValue,
-          createdAt: new Date(),
+          createdDate: new Date(),
           id: 0,
           snaps: 0
         }))

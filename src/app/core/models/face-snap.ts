@@ -7,7 +7,7 @@ export class FaceSnap {
     constructor(
         public title: string,
         public description: string,
-        public createdAt: Date,
+        public createdDate: Date,
         public snaps: number,
         public imageUrl: string,
         specificId?: number

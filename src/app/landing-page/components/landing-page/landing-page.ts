@@ -6,7 +6,6 @@ import {FormsModule, NgForm} from '@angular/forms';
   selector: 'app-landing-page',
   imports: [
     FormsModule
-
   ],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.scss',

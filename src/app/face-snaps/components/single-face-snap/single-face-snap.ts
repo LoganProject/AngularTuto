@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FaceSnap } from '../models/face-snap';
+import { FaceSnap } from '../../../core/models/face-snap';
 import {AsyncPipe, DatePipe, NgClass, NgStyle, UpperCasePipe} from '@angular/common';
-import {FaceSnapsService} from '../services/face-snaps.service';
-import {ActivatedRoute, RouterLink} from '@angular/router';
+import {FaceSnapsService} from '../../../core/services/face-snaps.service';
+import {ActivatedRoute, RouterLink, RouterModule} from '@angular/router';
 import {Observable, tap} from 'rxjs';
 
 @Component({
@@ -13,7 +13,7 @@ import {Observable, tap} from 'rxjs';
     UpperCasePipe,
     DatePipe,
     RouterLink,
-    AsyncPipe
+    AsyncPipe,
   ],
   templateUrl: './single-face-snap.html',
   styleUrl: './single-face-snap.scss',
@@ -36,7 +36,7 @@ export class SingleFaceSnap implements OnInit {
   onSnapClick(id: number): void {
     if(this.hasSnapped) {
       this.faceSnap$ = this.faceSnapsService.snapFaceSnapById(id, 'unsnap').pipe(
-        tap(() => {
+        tap((s) => {
           this.snapButtonText = 'Oh Snap!';
           this.hasSnapped = !this.hasSnapped;
         })
